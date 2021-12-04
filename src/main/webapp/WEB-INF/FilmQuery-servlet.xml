@@ -10,7 +10,4 @@
 
  <context:component-scan base-package="com.skilldistillery.film"/>
  
-
- <bean id="dao" class="com.skilldistillery.film.data.FilmDaoJdbcImpl.java"/>
- 
 </beans>

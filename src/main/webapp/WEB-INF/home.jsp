@@ -17,6 +17,6 @@
 	<br>
 	<h3>Edit Database</h3>
 	<tr>
-		<a href="addFilm">Add Film</a>
+		<a href="addFilmForm.html">Add Film</a>
 </body>
 </html>

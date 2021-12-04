@@ -6,20 +6,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>States</title>
+<title>Film</title>
 </head>
 <body>
   <c:choose>
-    <c:when test="${! empty state}">
+    <c:when test="${! empty film}">
       <ul>
-        <li>${state.abbreviation}</li>
-        <li>${state.name}</li>
-        <li>${state.capital}</li>
-        <li>${state.capitalPopulation}</li>
+        <li>${film.filmId}</li>
+        <li>${film.title}</li>
+        <li>${film.description}</li>
+        <li>${film.languageId}</li>
       </ul>
     </c:when>
     <c:otherwise>
-      <p>No state found</p>
+      <p>No film found</p>
     </c:otherwise>
   </c:choose>
 </body>
