@@ -5,7 +5,7 @@
 <title>Spring MVC Film Query</title>
 </head>
 <body>
-	<h3>Search</h3>
+	<h3>Search Database</h3>
 	<form action="IdSearch.do" method=GET>
 		Search Film ID #: <input type="text" name="filmId" /> <input
 			type="submit" value="Search ID" />
@@ -17,6 +17,6 @@
 	<br>
 	<h3>Edit Database</h3>
 	<tr>
-		<a href="addFilm.html">Add Film</a>
+		<a href="addFilm">Add Film</a>
 </body>
 </html>

@@ -13,13 +13,7 @@ public class FilmController {
 	@Autowired
 	private FilmDAO filmDao;
 
-//	@RequestMapping({ "/", "home.do" })
-//	public String home(Model model) {
-//		model.addAttribute("TEST", "Hello, Spring MVC!");
-//		return "home";
-//	}
-
-	@RequestMapping({ "/", "addFilm" })
+	@RequestMapping({ "/", "home.do" })
 	public String home(Model model) {
 		model.addAttribute("TEST", "Hello, Spring MVC!");
 		return "home";
