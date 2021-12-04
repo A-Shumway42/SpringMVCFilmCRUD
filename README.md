@@ -5,6 +5,7 @@
 ## Lessons Learned
 
 ## Technologies Used
+Spring Boot, Spring Tool Suite, Atom, MySQL, MAMP, Git, GitHub, Markdown, Unix Shell
 
 ## Project Owners
-David, Andrew, Graham
+Andrew Shumway, David Lizon, Graham Anderson
