@@ -18,5 +18,7 @@
 	<h3>Edit Database</h3>
 	<tr>
 		<a href="addFilm">Add Film</a>
+		<a href="deleteFilm">Delete Film</a>
+		<a href="searchFilmID">Search Film by ID</a>
 </body>
 </html>
