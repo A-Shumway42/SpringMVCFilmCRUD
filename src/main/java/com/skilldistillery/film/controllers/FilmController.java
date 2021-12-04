@@ -40,8 +40,8 @@ public class FilmController {
 	}
 
 	@RequestMapping(path = "AddFilm.do", method = RequestMethod.POST)
-	public ModelAndView addFilm(String title, int languageId, int rentalPeriod, double rentalRate,
-			double replacementCost) {
+	public ModelAndView addFilm(String title, Integer languageId, Integer rentalPeriod, Double rentalRate,
+			Double replacementCost) {
 		ModelAndView mv = new ModelAndView();
 		Film film = filmDao.addFilm(new Film(title, languageId, rentalPeriod, rentalRate, replacementCost));
 
