@@ -20,11 +20,13 @@
 				<li>${film.rentalRate}</li>
 				<li>${film.replacementCost}</li>
 			</ul>
+			<a href="deleteFilm">Delete Film</a> <br>
+			<a href="home.do">Back</a>
 		</c:when>
 		<c:otherwise>
 			<p>No film found</p>
+			<a href="home.do">Back</a>
 		</c:otherwise>
 	</c:choose>
-	<a href="deleteFilm">Delete Film</a>
 </body>
 </html>

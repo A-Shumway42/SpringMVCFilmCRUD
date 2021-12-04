@@ -18,6 +18,5 @@
 	<h3>Edit Database</h3>
 	<tr>
 		<a href="addFilmForm.html">Add Film</a>
-		<a href="deleteFilm">Delete Film</a>
 </body>
 </html>
