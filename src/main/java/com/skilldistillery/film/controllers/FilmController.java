@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.film.data.FilmDAO;
 import com.skilldistillery.film.entities.Film;
@@ -48,6 +49,29 @@ public class FilmController {
 		mv.setViewName("result");
 
 		return mv;
+	}
+
+	@RequestMapping(path = "deleteFilmDetails.do", method = RequestMethod.POST)
+	public ModelAndView deleteFilmData(Film film, RedirectAttributes redir) {
+		boolean isDeleted = filmDao.deleteFilm(film);
+		boolean deletedConfirm = true;
+		ModelAndView mv = new ModelAndView();
+
+		redir.addFlashAttribute("isFilmDeleted", isDeleted);
+		redir.addFlashAttribute("deletedConfirm", deletedConfirm);
+		mv.setViewName("result");
+
+		return mv;
+	}
+
+	@RequestMapping(path = "filmDeleted.do", method = RequestMethod.GET)
+	public ModelAndView filmDeleted() {
+		ModelAndView mv = new ModelAndView();
+
+		mv.setViewName("result");
+
+		return mv;
+
 	}
 
 }
