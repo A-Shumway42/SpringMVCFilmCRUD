@@ -125,5 +125,14 @@ public class FilmController {
 		mv.setViewName("delete");
 		return mv;
 	}
+	
+		
+		@RequestMapping(path="filmUpdateButton.do", method=RequestMethod.GET)
+		public String account(HttpSession session) {
+			if(session.getAttribute("film") != null) {
+				return "film";
+			}
+			return "redirect:login.do";
+		}
 
 }

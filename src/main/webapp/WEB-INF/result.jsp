@@ -30,7 +30,7 @@
 				<input type="submit" value="Delete Film">
 			</form>
 			<br>
-			<form action="updateFilm.do">
+			<form action="filmUpdate.jsp">
 				<input type="submit" value="Update Film">
 			</form>
 			<br>

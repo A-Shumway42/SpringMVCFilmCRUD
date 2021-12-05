@@ -10,7 +10,7 @@
 <body>
 
 	<h1>Update:</h1>
-	<form action="updateFilm.do" method=POST>
+<%-- 	<form action="updateFilm.do" method=POST>
 		<label for="filmID">Film ID:</label> <input type="text" name="filmID"
 			value="${film.id}" required /> <br> 
 			
@@ -50,7 +50,12 @@
 		
 		<input type="submit" value="Update Film" />
 	</form>
-	<br>
+	<br> --%>
+	
+	
+<c:out value="${film.id }"></c:out>
+<c:out value="${film.title }"></c:out>
+<c:out value="${film.description }"></c:out>
 
 	<!-- Homepage link -->
 	<form action="home.do">
