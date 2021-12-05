@@ -47,6 +47,19 @@ public class FilmController {
 		return mv;
 	}
 	
+	// Start of keyword search
+//	@RequestMapping(path = "KeywordSearch.do", method = RequestMethod.GET)
+//	public ModelAndView getByFilmKeyword(String filmSearch, HttpSession session) {
+//		ModelAndView mv = new ModelAndView();
+//		List<Film> films = filmDao.keywordSearch(filmSearch);
+//		
+//		session.setAttribute("film", films);
+//
+//		mv.addObject("film", films);
+//		mv.setViewName("result");
+//
+//		return mv;
+//	}
 	
 	@RequestMapping(path = "AddFilm.do", method = RequestMethod.POST)
 	public ModelAndView addFilm(String title, Integer languageId, Integer rentalPeriod, Double rentalRate,
