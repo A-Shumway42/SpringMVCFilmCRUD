@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Deletion Results</title>
+<title>Results</title>
 </head>
 <body>
 	<c:if test="${deletedConfirm}">
@@ -21,6 +21,27 @@
 			<c:when test="${!isFilmDeleted}">
 				<div>
 					<h2>Film can't be deleted!</h2>
+					<form action="home.do">
+						<input type="submit" value="Home">
+					</form>
+				</div>
+			</c:when>
+		</c:choose>
+	</c:if>
+
+	<c:if test="${updateConfirm}">
+		<c:choose>
+			<c:when test="${isFilmUpdated}">
+				<div>
+					<h2>Film Updated!</h2>
+					<form action="home.do">
+						<input type="submit" value="Home">
+					</form>
+				</div>
+			</c:when>
+			<c:when test="${!isFilmUpdated}">
+				<div>
+					<h2>Film can't be updated!</h2>
 					<form action="home.do">
 						<input type="submit" value="Home">
 					</form>

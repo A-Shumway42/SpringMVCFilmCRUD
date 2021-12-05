@@ -36,10 +36,11 @@ public class FilmController {
 
 		session.setAttribute("film", film);
 
-		mv.addObject("actors", film.getActors());
+		if (film != null) {
+			mv.addObject("actors", film.getActors());
+		}
 		mv.addObject("film", film);
 		mv.setViewName("result");
-
 		return mv;
 	}
 
@@ -92,9 +93,7 @@ public class FilmController {
 	@RequestMapping(path = "filmDeleted.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView filmDeleted() {
 		ModelAndView mv = new ModelAndView();
-
 		mv.setViewName("delete");
-
 		return mv;
 	}
 
@@ -102,6 +101,29 @@ public class FilmController {
 		Film current = (Film) session.getAttribute("film");
 
 		return current;
+	}
+
+	@RequestMapping(path = "updateFilm.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView updateFilm(RedirectAttributes redir, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		Film current = getCurrentFilmFromSession(session);
+		
+		boolean isUpdated = filmDao.updateFilm(current);
+		redir.addFlashAttribute("isFilmUpdated", isUpdated);
+		
+		boolean updateConfirm = true;
+		redir.addFlashAttribute("updateConfirm", updateConfirm);
+
+		mv.setViewName("redirect:filmUpdated.do");
+		return mv;
+
+	}
+
+	@RequestMapping(path = "filmUpdated.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView filmUpdated() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("delete");
+		return mv;
 	}
 
 }
