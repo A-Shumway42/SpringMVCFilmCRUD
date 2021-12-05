@@ -240,8 +240,9 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 	}
 
 	@Override
-	public Film updateFilm(Film film) {
+	public boolean updateFilm(Film film) {
 		Connection conn = null;
+		boolean filmUpdated = false;
 
 		try {
 			conn = DriverManager.getConnection(URL, user, pass);
@@ -273,14 +274,14 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 				}
 
 				keys.close();
+				filmUpdated = true;
 
 			} else {
-				film = null;
+				filmUpdated = false;
 
 			}
 
 			conn.commit();
-
 			stmt.close();
 			conn.close();
 
@@ -295,7 +296,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			}
 		}
 
-		return film;
+		return filmUpdated;
 	}
 
 	@Override
