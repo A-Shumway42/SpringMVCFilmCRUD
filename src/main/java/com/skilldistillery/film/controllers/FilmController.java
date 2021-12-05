@@ -34,7 +34,7 @@ public class FilmController {
 
 		ModelAndView mv = new ModelAndView();
 		Film film = filmDao.findFilmById(id);
-		
+
 		session.setAttribute("film", film);
 
 		mv.addObject("film", film);
@@ -45,13 +45,14 @@ public class FilmController {
 
 	@RequestMapping(path = "AddFilm.do", method = RequestMethod.POST)
 	public ModelAndView addFilm(String title, Integer languageId, Integer rentalPeriod, Double rentalRate,
-			Double replacementCost) {
+			Double replacementCost,  HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		Film film = filmDao.addFilm(new Film(title, languageId, rentalPeriod, rentalRate, replacementCost));
 
 		mv.addObject("film", film);
 		mv.setViewName("result");
-
+		
+		session.setAttribute("film", film);
 		return mv;
 	}
 
@@ -66,19 +67,23 @@ public class FilmController {
 //		
 //		return mv;
 //	}
-	@RequestMapping(path = "deleteFilm.do", method = {RequestMethod.POST, RequestMethod.GET})
-	public ModelAndView deleteFilm(Film film, RedirectAttributes redir) {
-		boolean isDeleted = filmDao.deleteFilm(film);
+	@RequestMapping(path = "deleteFilm.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView deleteFilm(RedirectAttributes redir, HttpSession session) {
+		
+		// Get current film in session
+		Film current = getCurrentFilmFromSession(session);
+		
+		boolean isDeleted = filmDao.deleteFilm(current);
 		ModelAndView mv = new ModelAndView();
 		redir.addFlashAttribute("isFilmDeleted", isDeleted);
 		boolean deletedConfirm = true;
 		redir.addFlashAttribute("deletedConfirm", deletedConfirm);
 		mv.setViewName("redirect:filmDeleted.do");
-		
+
 		return mv;
 	}
 
-	@RequestMapping(path = "filmDeleted.do", method = {RequestMethod.POST, RequestMethod.GET})
+	@RequestMapping(path = "filmDeleted.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView filmDeleted() {
 		ModelAndView mv = new ModelAndView();
 
@@ -86,6 +91,11 @@ public class FilmController {
 
 		return mv;
 
+	}
+
+	private Film getCurrentFilmFromSession(HttpSession session) {
+		Film current = (Film) session.getAttribute("film");
+		return current;
 	}
 
 //	@RequestMapping(path = "filmDeleted.do", method = RequestMethod.GET)
