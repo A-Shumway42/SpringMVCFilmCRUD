@@ -115,8 +115,7 @@ public class FilmController {
 	public ModelAndView updateFilm(RedirectAttributes redir, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		Film current = getCurrentFilmFromSession(session);
-		
-		
+
 		boolean isUpdated = current.getFilmId() > 0 ? true : false;
 		redir.addFlashAttribute("isFilmUpdated", isUpdated);
 		
