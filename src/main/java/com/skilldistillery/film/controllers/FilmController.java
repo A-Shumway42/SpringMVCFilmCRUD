@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -71,6 +72,7 @@ public class FilmController {
 		mv.addObject("film", film);
 		mv.setViewName("result");
 		session.setAttribute("film", film);
+		
 		return mv;
 	}
 
@@ -97,24 +99,33 @@ public class FilmController {
 		return mv;
 	}
 
-	private Film getCurrentFilmFromSession(HttpSession session) {
-		Film current = (Film) session.getAttribute("film");
-
-		return current;
+	@RequestMapping(path = "updateFilmForm.do", method = RequestMethod.GET)
+	public ModelAndView updateFilmForm(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		Film current = getCurrentFilmFromSession(session);
+		
+		
+		mv.addObject("film", current);
+		mv.setViewName("filmUpdate");
+		
+		return mv;
 	}
 
 	@RequestMapping(path = "updateFilm.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView updateFilm(RedirectAttributes redir, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		Film current = getCurrentFilmFromSession(session);
-		
+
 		boolean isUpdated = current.getFilmId() > 0 ? true : false;
 		redir.addFlashAttribute("isFilmUpdated", isUpdated);
 		
 		boolean updateConfirm = true;
 		redir.addFlashAttribute("updateConfirm", updateConfirm);
-
+		
+		mv.addObject("film", current);
 		mv.setViewName("redirect:filmUpdated.do");
+		session.setAttribute("updatedFilm", filmDao.updateFilm(current));
+		
 		return mv;
 
 	}
@@ -122,8 +133,16 @@ public class FilmController {
 	@RequestMapping(path = "filmUpdated.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView filmUpdated() {
 		ModelAndView mv = new ModelAndView();
+
 		mv.setViewName("delete");
+
 		return mv;
+	}
+	
+	private Film getCurrentFilmFromSession(HttpSession session) {
+		Film current = (Film) session.getAttribute("film");
+
+		return current;
 	}
 
 }
