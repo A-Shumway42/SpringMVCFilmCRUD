@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.reactive.WebFluxProperties.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,8 +22,12 @@ public class FilmController {
 	FilmDAO filmDao;
 
 	@RequestMapping({ "/", "home.do" })
-	public ModelAndView home() {
+	public ModelAndView home(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
+		
+		if(session != null) {
+			session.invalidate();
+		}
 
 		mv.setViewName("home");
 
@@ -110,19 +115,17 @@ public class FilmController {
 	}
 
 	@RequestMapping(path = "updateFilm.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView updateFilm(RedirectAttributes redir, HttpSession session) {
+	public ModelAndView updateFilm(Film film, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
 
-		Film current = filmDao.updateFilm(getCurrentFilmFromSession(session));
+		filmDao.updateFilm(film);
 
-		boolean isUpdated = current.getFilmId() > 0 ? true : false;
+		boolean isUpdated = film.getFilmId() > 0 ? true : false;
 		redir.addFlashAttribute("isFilmUpdated", isUpdated);
 
 		boolean updateConfirm = true;
 		redir.addFlashAttribute("updateConfirm", updateConfirm);
 
-
-//		session.setAttribute("updatedFilm", current);
 		mv.setViewName("redirect:filmUpdated.do");
 
 		return mv;

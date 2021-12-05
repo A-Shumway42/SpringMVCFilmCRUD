@@ -43,7 +43,7 @@
 				<c:forEach var="f" items="${films}">
 					<br>
 					<h3>Film Details:</h3>
-					<li>${f.title}</li>
+					<li>${film.title}</li>
 					<li>ID - ${f.filmId}</li>
 					<li>${f.description}</li>
 					<li>${f.languageId}</li>
@@ -56,6 +56,9 @@
 						<li>${x.toString()}</li>
 						<br>
 					</c:forEach>
+					<form action="updateFilmForm.do">
+						<input type="submit" value="Update Film">
+					</form>
 				</c:forEach>
 			</ul>
 			<br>
