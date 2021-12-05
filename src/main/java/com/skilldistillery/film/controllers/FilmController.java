@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -102,19 +103,30 @@ public class FilmController {
 
 		return current;
 	}
+	
+	@RequestMapping(path = "updateFilmForm.do", method = RequestMethod.GET)
+	public ModelAndView updateFilmForm(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		Film current = getCurrentFilmFromSession(session);
+		
+		mv.addObject("film", current);
+		mv.setViewName("filmUpdate");
+		
+		return mv;
+	}
 
 	@RequestMapping(path = "updateFilm.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView updateFilm(RedirectAttributes redir, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		Film current = getCurrentFilmFromSession(session);
 		
-		boolean isUpdated = filmDao.updateFilm(current);
-		redir.addFlashAttribute("isFilmUpdated", isUpdated);
+		boolean isUpdated = current.getFilmId() > 0 ? true : false;
+//		redir.addFlashAttribute("isFilmUpdated", isUpdated);
 		
 		boolean updateConfirm = true;
-		redir.addFlashAttribute("updateConfirm", updateConfirm);
+//		redir.addFlashAttribute("updateConfirm", updateConfirm);
 
-		mv.setViewName("redirect:filmUpdated.do");
+		mv.setViewName("filmUpdated.do");
 		return mv;
 
 	}

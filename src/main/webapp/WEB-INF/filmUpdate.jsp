@@ -10,19 +10,16 @@
 <body>
 
 	<h1>Update:</h1>
-	<form action="updateFilm.do" method=POST>
-		<label for="filmID">Film ID:</label> <input type="text" name="filmID"
-			value="${film.id}" required /> <br> 
+	<form action="updateFilm.do" method=GET>
+		<label for="filmID">Film ID:</label> <input type="text" name="filmID" value="${film.filmId}" required /> <br> 
 			
 		<label for="title">Title:</label> <input type="text" name="title" value="${film.title}" required /> <br>
 		
-		<label for="description">Description:</label> <input type="text"
-			name="description" value="${film.description}" required /> <br>
+		<label for="description">Description:</label> <input type="text" name="description" value="${film.description}" required /> <br>
 		
-		<label for="releaseYear">Release Year:</label> <input type="text"
-			name="releaseYear" value="${film.releaseYear}" required /> 
-			<label for="languageId">Language ID#:</label> <input type="text"
-			name="languageId" value="${film.language}" required />
+		<label for="releaseYear">Release Year:</label> <input type="text" name="releaseYear" value="${film.releaseYear}" required /> 
+		
+		<label for="languageId">Language ID#:</label> <input type="text" name="languageId" value="${film.languageId}" required />
 		<ol>
 			<li>English</li>
 			<li>Italian</li>
@@ -32,23 +29,21 @@
 			<li>German</li>
 		</ol>
 		
-		<label for="rentalPeriod">Rental Duration:</label> <input type="text"
-			name="rentalPeriod" value="${film.rentalPeriod}" required /> <br>
+		<label for="rentalPeriod">Rental Duration:</label> <input type="text" name="rentalPeriod" value="${film.rentalPeriod}" required /> <br>
 		
-		<label for="rentalRate">Rental Rate:</label> <input type="text"
-			name="rentalRate" value="${film.rentalRate}" required /> <br> <label
-			for="length">Length:</label> <input type="text" name="length"
-			value="${film.length}" required /> <br> <label
-			for="replacementCost">Replacement Cost:</label> <input type="text"
-			name="replacementCost" value="${film.replacementCost}" required /> <br>
+		<label for="rentalRate">Rental Rate:</label> <input type="text" name="rentalRate" value="${film.rentalRate}" required /> <br>
 		
-		<label for="rating">Rating:</label> <input type="text" name="rating"
-			value="${film.rating}" required /> <br> <label
-			for="specialFeatures">"Special Features":</label> <input type="text"
-			name="specialFeatures" value="${film.specialFeatures" } required />
-		<br> 
+		<label for="length">Length:</label> <input type="text" name="length" value="${film.length}" required /> <br>
 		
-		<input type="submit" value="Update Film" />
+		<label for="replacementCost">Replacement Cost:</label> <input type="text" name="replacementCost" value="${film.replacementCost}" required /> <br>
+		
+		<label for="rating">Rating:</label> <input type="text" name="rating" value="${film.rating}" required /> <br>
+		
+		<label for="specialFeatures">"Special Features":</label> <input type="text" name="specialFeatures" value="${film.specialFeatures}" required />	<br> 
+		
+		<form action="updateFilm.do">
+			<input type="submit" value="Update Film" />
+		</form>
 	</form>
 	<br>
 
@@ -56,15 +51,6 @@
 	<form action="home.do">
 		<input type="submit" value="Back">
 	</form>
-
-
-	<c:if test="${updateConfirmed }">
-		<c:choose>
-			<div>
-				<h2>Film Updated</h2>
-			</div>
-		</c:choose>
-	</c:if>
 
 </body>
 </html>
