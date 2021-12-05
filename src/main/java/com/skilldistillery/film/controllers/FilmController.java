@@ -36,6 +36,7 @@ public class FilmController {
 		ModelAndView mv = new ModelAndView();
 		Film film = filmDao.findFilmById(id);
 
+		session.setAttribute("film", film);
 
 		mv.addObject("film", film);
 		mv.setViewName("result");
@@ -46,7 +47,8 @@ public class FilmController {
 
 	@RequestMapping(path = "AddFilm.do", method = RequestMethod.POST)
 	public ModelAndView addFilm(String title, Integer languageId, Integer rentalPeriod, Double rentalRate,
-			Double replacementCost, HttpSession session) {
+
+			Double replacementCost,  HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		Film film = filmDao.addFilm(new Film(title, languageId, rentalPeriod, rentalRate, replacementCost));
 
@@ -59,7 +61,10 @@ public class FilmController {
 
 	@RequestMapping(path = "deleteFilm.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView deleteFilm(RedirectAttributes redir, HttpSession session) {
+		
+		// Get current film in session
 		Film current = getCurrentFilmFromSession(session);
+		
 		boolean isDeleted = filmDao.deleteFilm(current);
 		ModelAndView mv = new ModelAndView();
 		redir.addFlashAttribute("isFilmDeleted", isDeleted);
@@ -85,7 +90,6 @@ public class FilmController {
 
 		return current;
 	}
-
 
 
 }
