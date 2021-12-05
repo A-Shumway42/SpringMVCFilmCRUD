@@ -1,6 +1,5 @@
 package com.skilldistillery.film.entities;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -10,7 +9,7 @@ public class Film {
 	private int filmId;
 	private String title;
 	private String description;
-	private Date releaseYear;
+	private int releaseYear;
 	private int languageId;
 	private String language;
 	private int rentalPeriod;
@@ -24,7 +23,8 @@ public class Film {
 
 	}
 
-	public Film(int filmId, String title, String description, Date releaseYear, int languageId, int rentalPeriod,
+	public Film(int filmId, String title, String description,
+			int releaseYear, int languageId, int rentalPeriod,
 			double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {
 		this.filmId = filmId;
 		this.title = title;
@@ -81,11 +81,11 @@ public class Film {
 		this.description = description;
 	}
 
-	public Date getReleaseYear() {
+	public int getReleaseYear() {
 		return releaseYear;
 	}
 
-	public void setReleaseYear(Date releaseYear) {
+	public void setReleaseYear(int releaseYear) {
 		this.releaseYear = releaseYear;
 	}
 

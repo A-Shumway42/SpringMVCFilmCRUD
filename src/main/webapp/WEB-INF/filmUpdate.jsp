@@ -17,9 +17,9 @@
 		
 		<label for="description">Description:</label> <input type="text" name="description" value="${film.description}" /> <br>
 		
-		<label for="releaseYear">Release Year:</label> <input type="text" name="releaseYear" value="${film.releaseYear}" /> 
+		<label for="releaseYear">Release Year:</label> <input type="number" placeholder="YYYY" name="releaseYear" value="${film.releaseYear}" /> 
 		
-		<label for="languageId">Language ID#:</label> <input type="text" name="languageId" value="${film.languageId}" required />
+		<label for="languageId">Language ID#:</label> <input type="number" name="languageId" value="${film.languageId}" required />
 		<ol>
 			<li>English</li>
 			<li>Italian</li>
@@ -29,13 +29,13 @@
 			<li>German</li>
 		</ol>
 		
-		<label for="rentalPeriod">Rental Duration:</label> <input type="text" name="rentalPeriod" value="${film.rentalPeriod}" required /> <br>
+		<label for="rentalPeriod">Rental Duration:</label> <input type="number" name="rentalPeriod" value="${film.rentalPeriod}" required /> <br>
 		
-		<label for="rentalRate">Rental Rate:</label> <input type="text" name="rentalRate" value="${film.rentalRate}" required /> <br>
+		<label for="rentalRate">Rental Rate:</label> <input type="number" name="rentalRate" value="${film.rentalRate}" required /> <br>
 		
-		<label for="length">Length:</label> <input type="text" name="length" value="${film.length}" /> <br>
+		<label for="length">Length:</label> <input type="number" name="length" value="${film.length}" /> <br>
 		
-		<label for="replacementCost">Replacement Cost:</label> <input type="text" name="replacementCost" value="${film.replacementCost}" required /> <br>
+		<label for="replacementCost">Replacement Cost:</label> <input type="number" name="replacementCost" value="${film.replacementCost}" required /> <br>
 		
 		<label for="rating">Rating:</label> <input type="text" name="rating" value="${film.rating}" /> <br>
 		
