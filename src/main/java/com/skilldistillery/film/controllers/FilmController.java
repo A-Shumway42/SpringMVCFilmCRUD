@@ -62,7 +62,7 @@ public class FilmController {
 		
 		return mv;
 	}
-
+	
 	@RequestMapping(path = "AddFilm.do", method = RequestMethod.POST)
 	public ModelAndView addFilm(String title, Integer languageId, Integer rentalPeriod, Double rentalRate,
 
