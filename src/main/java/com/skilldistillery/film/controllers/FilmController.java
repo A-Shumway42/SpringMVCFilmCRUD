@@ -108,7 +108,7 @@ public class FilmController {
 		ModelAndView mv = new ModelAndView();
 		Film current = getCurrentFilmFromSession(session);
 		
-		boolean isUpdated = filmDao.updateFilm(current);
+		boolean isUpdated = current.getFilmId() > 0 ? true : false;
 		redir.addFlashAttribute("isFilmUpdated", isUpdated);
 		
 		boolean updateConfirm = true;
