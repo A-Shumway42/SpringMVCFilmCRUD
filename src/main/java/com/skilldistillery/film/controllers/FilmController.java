@@ -1,6 +1,5 @@
 package com.skilldistillery.film.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.film.data.FilmDAO;
-import com.skilldistillery.film.entities.Actor;
 import com.skilldistillery.film.entities.Film;
 
 @Controller
@@ -44,29 +42,29 @@ public class FilmController {
 
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "KeySearch.do", method = RequestMethod.GET)
 	public ModelAndView getFilmKeyWord(String keyWord, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		List<Film> films = filmDao.keywordSearch(keyWord);
-		
+
 		session.setAttribute("films", films);
-		
+
 		for (Film film : films) {
 			mv.addObject("actors", film.getActors());
-			
+
 		}
-		
+
 		mv.addObject("films", films);
 		mv.setViewName("result");
-		
+
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "AddFilm.do", method = RequestMethod.POST)
 	public ModelAndView addFilm(String title, Integer languageId, Integer rentalPeriod, Double rentalRate,
 
-			Double replacementCost,  HttpSession session) {
+			Double replacementCost, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		Film film = filmDao.addFilm(new Film(title, languageId, rentalPeriod, rentalRate, replacementCost));
 
@@ -80,10 +78,10 @@ public class FilmController {
 	public ModelAndView deleteFilm(RedirectAttributes redir, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		Film current = getCurrentFilmFromSession(session);
-		
+
 		boolean isDeleted = filmDao.deleteFilm(current);
 		redir.addFlashAttribute("isFilmDeleted", isDeleted);
-		
+
 		boolean deletedConfirm = true;
 		redir.addFlashAttribute("deletedConfirm", deletedConfirm);
 
@@ -100,12 +98,11 @@ public class FilmController {
 
 		return mv;
 	}
-	
+
 	private Film getCurrentFilmFromSession(HttpSession session) {
 		Film current = (Film) session.getAttribute("film");
 
 		return current;
 	}
-
 
 }
