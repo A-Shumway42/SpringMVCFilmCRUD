@@ -7,16 +7,18 @@
 <body>
 	<h3>Search Database</h3>
 	<form action="IdSearch.do" method=GET>
-		Search Film ID #: <input type="text" name="filmId" /> <input
+		Search Film ID #: <input type="number" name="filmId" /> <input
 			type="submit" value="Search ID" />
 	</form>
 	<form action="KeySearch.do" method=GET>
-		Keyword Search: <input type="text" name="filmId" /> <input
+		Keyword Search: <input type="text" name="keyWord" /> <input
 			type="submit" value="Search Keyword" />
 	</form>
 	<br>
 	<h3>Edit Database</h3>
 	<tr>
-		<a href="addFilmForm.html">Add Film</a>
+		<form action="addFilmForm.html">
+			<input type="submit" value="Add Film">
+		</form>
 </body>
 </html>

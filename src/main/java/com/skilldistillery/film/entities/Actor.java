@@ -38,13 +38,13 @@ public class Actor {
 	}
 
 	public void simpleString() {
-		System.out.println("\t ActorId: " + actorId + "\n\t Name: " + lastName + ", " + firstName);
+		System.out.println(" ActorId: " + actorId + "\n\t Name: " + lastName + ", " + firstName);
 		System.out.println();
 	}
 
 	@Override
 	public String toString() {
-		return "\t ActorId: " + actorId + ", " + lastName + ", " + firstName;
+		return lastName + ", " + firstName + " - ID #: " + actorId;
 	}
 
 	@Override

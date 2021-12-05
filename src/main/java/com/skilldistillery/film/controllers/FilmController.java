@@ -1,5 +1,8 @@
 package com.skilldistillery.film.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.film.data.FilmDAO;
+import com.skilldistillery.film.entities.Actor;
 import com.skilldistillery.film.entities.Film;
 
 @Controller
@@ -25,23 +29,37 @@ public class FilmController {
 		mv.setViewName("home");
 
 		return mv;
-
 	}
-	
 
-	@RequestMapping(path = "IdSearch.do", params = "filmId", method = RequestMethod.GET)
-	public ModelAndView getByFilmID(String filmId, HttpSession session) {
-		int id = Integer.parseInt(filmId);
-
+	@RequestMapping(path = "IdSearch.do", method = RequestMethod.GET)
+	public ModelAndView getByFilmID(Integer filmId, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		Film film = filmDao.findFilmById(id);
+		Film film = filmDao.findFilmById(filmId);
 
 		session.setAttribute("film", film);
 
+		mv.addObject("actors", film.getActors());
 		mv.addObject("film", film);
 		mv.setViewName("result");
 
-		session.setAttribute("film", film);
+		return mv;
+	}
+	
+	@RequestMapping(path = "KeySearch.do", method = RequestMethod.GET)
+	public ModelAndView getFilmKeyWord(String keyWord, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		List<Film> films = filmDao.keywordSearch(keyWord);
+		
+		session.setAttribute("films", films);
+		
+		for (Film film : films) {
+			mv.addObject("actors", film.getActors());
+			
+		}
+		
+		mv.addObject("films", films);
+		mv.setViewName("result");
+		
 		return mv;
 	}
 
@@ -58,18 +76,17 @@ public class FilmController {
 		return mv;
 	}
 
-
 	@RequestMapping(path = "deleteFilm.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView deleteFilm(RedirectAttributes redir, HttpSession session) {
-		
-		// Get current film in session
+		ModelAndView mv = new ModelAndView();
 		Film current = getCurrentFilmFromSession(session);
 		
 		boolean isDeleted = filmDao.deleteFilm(current);
-		ModelAndView mv = new ModelAndView();
 		redir.addFlashAttribute("isFilmDeleted", isDeleted);
+		
 		boolean deletedConfirm = true;
 		redir.addFlashAttribute("deletedConfirm", deletedConfirm);
+
 		mv.setViewName("redirect:filmDeleted.do");
 
 		return mv;
@@ -82,9 +99,8 @@ public class FilmController {
 		mv.setViewName("delete");
 
 		return mv;
-
 	}
-
+	
 	private Film getCurrentFilmFromSession(HttpSession session) {
 		Film current = (Film) session.getAttribute("film");
 

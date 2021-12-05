@@ -14,7 +14,7 @@
 				<div>
 					<h2>Film Deleted!</h2>
 					<form action="home.do">
-						<input type="submit" value="home">
+						<input type="submit" value="Home">
 					</form>
 				</div>
 			</c:when>
@@ -22,7 +22,7 @@
 				<div>
 					<h2>Film can't be deleted!</h2>
 					<form action="home.do">
-						<input type="submit" value="home">
+						<input type="submit" value="Home">
 					</form>
 				</div>
 			</c:when>

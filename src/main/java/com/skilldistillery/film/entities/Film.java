@@ -19,9 +19,9 @@ public class Film {
 	private double replacementCost;
 	private String rating;
 	private String specialFeatures;
-	
+
 	public Film() {
-		
+
 	}
 
 	public Film(int filmId, String title, String description, Date releaseYear, int languageId, int rentalPeriod,
@@ -151,6 +151,23 @@ public class Film {
 
 	public void setSpecialFeatures(String specialFeatures) {
 		this.specialFeatures = specialFeatures;
+	}
+
+	public void simpleString() {
+		System.out.println("========================================================");
+		System.out.println("Title: " + getTitle() + "\n Release Year: " + getReleaseYear() + "\n Language: "
+				+ getLanguage() + "\n Rating: " + getRating() + "\n Description: " + getDescription());
+		System.out.println("_________     _____    ____________________\n"
+				+ "\\_   ___ \\   /  _  \\  /   _____/\\__    ___/\n"
+				+ "/    \\  \\/  /  /_\\  \\ \\_____  \\   |    |   \n"
+				+ "\\     \\____/    |    \\/        \\  |    |   \n"
+				+ " \\______  /\\____|__  /_______  /  |____|   \n" + "        \\/         \\/        \\/          ");
+		if (actors != null) {
+			for (Actor actor : actors) {
+				actor.simpleString();
+			}
+			System.out.println("========================================================");
+		}
 	}
 
 	@Override

@@ -160,8 +160,8 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			String sql = "SELECT * FROM film WHERE title LIKE ? OR description LIKE ?";
 
 			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setString(1, keyword);
-			stmt.setString(2, keyword);
+			stmt.setString(1, "%"+keyword+"%");
+			stmt.setString(2, "%"+keyword+"%");
 
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {

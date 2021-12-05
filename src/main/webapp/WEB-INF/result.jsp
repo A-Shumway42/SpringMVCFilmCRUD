@@ -11,21 +11,59 @@
 <body>
 	<c:choose>
 		<c:when test="${! empty film}">
+			<h1>Film Details</h1>
 			<ul>
-				<li>${film.filmId}</li>
 				<li>${film.title}</li>
+				<li>ID - ${film.filmId}</li>
 				<li>${film.description}</li>
 				<li>${film.languageId}</li>
 				<li>${film.rentalPeriod}</li>
 				<li>${film.rentalRate}</li>
 				<li>${film.replacementCost}</li>
+				<li>${film.rating}</li>
+				<h3>Cast</h3>
+				<c:forEach var="f" items="${actors}">
+					<li>${f.toString()}</li>
+				</c:forEach>
 			</ul>
-			<a href="deleteFilm.do">Delete Film</a><br>
-			<a href="home.do">Back</a>
+			<form action="deleteFilm.do">
+				<input type="submit" value="Delete Film">
+			</form>
+			<br>
+			<form action="home.do">
+				<input type="submit" value="Back">
+			</form>
+		</c:when>
+		<c:when test="${! empty films}">
+			<ul>
+				<c:forEach var="f" items="${films}">
+					<br>
+					<h3>Film Details:</h3>
+					<li>${f.title}</li>
+					<li>ID - ${f.filmId}</li>
+					<li>${f.description}</li>
+					<li>${f.languageId}</li>
+					<li>${f.rentalPeriod}</li>
+					<li>${f.rentalRate}</li>
+					<li>${f.replacementCost}</li>
+					<li>${f.rating}</li>
+					<h3>Cast</h3>
+					<c:forEach var="x" items="${actors}">
+						<li>${x.toString()}</li>
+						<br>
+					</c:forEach>
+				</c:forEach>
+			</ul>
+			<br>
+			<form action="home.do">
+				<input type="submit" value="Back">
+			</form>
 		</c:when>
 		<c:otherwise>
 			<p>No film found</p>
-			<a href="home.do">Back</a>
+			<form action="home.do">
+				<input type="submit" value="Back">
+			</form>
 		</c:otherwise>
 	</c:choose>
 </body>
