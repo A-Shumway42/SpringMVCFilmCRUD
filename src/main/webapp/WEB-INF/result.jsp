@@ -43,7 +43,7 @@
 				<c:forEach var="f" items="${films}">
 					<br>
 					<h3>Film Details:</h3>
-					<li>${film.title}</li>
+					<li>${f.title}</li>
 					<li>ID - ${f.filmId}</li>
 					<li>${f.description}</li>
 					<li>${f.languageId}</li>
