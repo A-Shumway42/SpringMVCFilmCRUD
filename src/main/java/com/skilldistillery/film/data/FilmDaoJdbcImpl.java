@@ -43,7 +43,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				film = new Film(rs.getInt("id"), rs.getString("title"), rs.getString("description"),
-						rs.getDate("release_year"), rs.getInt("language_id"), rs.getInt("rental_duration"),
+						rs.getInt("release_year"), rs.getInt("language_id"), rs.getInt("rental_duration"),
 						rs.getDouble("rental_rate"), rs.getInt("length"), rs.getDouble("replacement_cost"),
 						rs.getString("rating"), rs.getString("special_features"));
 
@@ -166,7 +166,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				films.add(new Film(rs.getInt("id"), rs.getString("title"), rs.getString("description"),
-						rs.getDate("release_year"), rs.getInt("language_id"), rs.getInt("rental_duration"),
+						rs.getInt("release_year"), rs.getInt("language_id"), rs.getInt("rental_duration"),
 						rs.getDouble("rental_rate"), rs.getInt("length"), rs.getDouble("replacement_cost"),
 						rs.getString("rating"), rs.getString("special_features")));
 			}
@@ -240,9 +240,8 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 	}
 
 	@Override
-	public boolean updateFilm(Film film) {
+	public Film updateFilm(Film film) {
 		Connection conn = null;
-		boolean filmUpdated = false;
 
 		try {
 			conn = DriverManager.getConnection(URL, user, pass);
@@ -253,7 +252,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, film.getTitle());
 			stmt.setString(2, film.getDescription());
-			stmt.setDate(3, film.getReleaseYear());
+			stmt.setInt(3, film.getReleaseYear());
 			stmt.setInt(4, film.getLanguageId());
 			stmt.setInt(5, film.getRentalPeriod());
 			stmt.setDouble(6, film.getRentalRate());
@@ -269,14 +268,12 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 				ResultSet keys = stmt.getGeneratedKeys();
 				if (keys.next()) {
 					int updatedFilmId = keys.getInt(1);
-					film.setFilmId(updatedFilmId);
 				}
 
 				keys.close();
-				filmUpdated = true;
 
 			} else {
-				filmUpdated = false;
+				film = null;
 
 			}
 
@@ -295,7 +292,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			}
 		}
 
-		return filmUpdated;
+		return film;
 	}
 
 	@Override

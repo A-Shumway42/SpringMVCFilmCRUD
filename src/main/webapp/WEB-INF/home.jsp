@@ -21,6 +21,5 @@
 			<input type="submit" value="Add Film">
 		</form>
 	</tr>
-
 </body>
 </html>
