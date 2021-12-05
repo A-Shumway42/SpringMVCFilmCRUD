@@ -54,7 +54,7 @@ public class FilmController {
 		ModelAndView mv = new ModelAndView();
 		List<Film> films = filmDao.keywordSearch(keyWord);
 
-		session.setAttribute("films", films);
+//		session.setAttribute("films", films);
 
 		for (Film film : films) {
 			mv.addObject("actors", film.getActors());
