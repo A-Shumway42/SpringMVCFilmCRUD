@@ -115,16 +115,16 @@ public class FilmController {
 	public ModelAndView updateFilm(RedirectAttributes redir, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		Film current = getCurrentFilmFromSession(session);
-
+		
 		boolean isUpdated = current.getFilmId() > 0 ? true : false;
 		redir.addFlashAttribute("isFilmUpdated", isUpdated);
 		
 		boolean updateConfirm = true;
 		redir.addFlashAttribute("updateConfirm", updateConfirm);
 		
-		mv.addObject("film", current);
+//		mv.addObject("film", current);
 		mv.setViewName("redirect:filmUpdated.do");
-		session.setAttribute("updatedFilm", filmDao.updateFilm(current));
+//		session.setAttribute("updatedFilm", filmDao.updateFilm(current));
 		
 		return mv;
 
