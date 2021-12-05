@@ -127,8 +127,6 @@ public class FilmController {
 		mv.setViewName("redirect:filmUpdated.do");
 		session.setAttribute("updatedFilm", filmDao.updateFilm(current));
 		
-		
-		
 		return mv;
 
 	}
