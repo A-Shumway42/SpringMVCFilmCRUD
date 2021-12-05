@@ -240,15 +240,15 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 	}
 
 	@Override
-	public Film updateFilm(Film film) {
+	public boolean updateFilm(Film film) {
 		Connection conn = null;
+		boolean filmUpdated = false;
 
 		try {
 			conn = DriverManager.getConnection(URL, user, pass);
 			conn.setAutoCommit(false);
 
-			String sql = "UPDATE film SET title=?, description=?, release_year=?, language_id=?, rental_duration=?, "
-					+ "rental_rate=?, length=?, replacement_cost=?, rating=?, special_features=?" + "WHERE film.id = ?";
+			String sql = "UPDATE film SET title=?, description=?, release_year=?, language_id=?, rental_duration=?, rental_rate=?, length=?, replacement_cost=?, rating=?, special_features=? WHERE film.id = ?";
 
 			PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, film.getTitle());
@@ -273,14 +273,14 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 				}
 
 				keys.close();
+				filmUpdated = true;
 
 			} else {
-				film = null;
+				filmUpdated = false;
 
 			}
 
 			conn.commit();
-
 			stmt.close();
 			conn.close();
 
@@ -295,7 +295,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			}
 		}
 
-		return film;
+		return filmUpdated;
 	}
 
 	@Override
@@ -330,7 +330,5 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 
 			return false;
 		}
-
 	}
-
 }

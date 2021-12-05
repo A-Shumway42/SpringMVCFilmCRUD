@@ -20,6 +20,6 @@ public interface FilmDAO {
 
 	public List<Film> keywordSearch(String keyword);
 	
-	public Film updateFilm(Film film);
+	public boolean updateFilm(Film film);
 
 }
