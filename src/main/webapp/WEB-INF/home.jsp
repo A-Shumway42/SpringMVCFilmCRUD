@@ -14,6 +14,11 @@
 		Keyword Search: <input id="2" type="text" name="keyWord" /> <input
 			type="submit" value="Search Keyword" />
 	</form>
+	
+	<form action="filmUpdateButton.do" method=GET>
+		Film ID: <input type="text" name="updateFilm" /> <input
+			type="submit" value="Film Update" />
+	</form>
 	<br>
 	<h3>Edit Database</h3>
 	<tr>
@@ -21,5 +26,6 @@
 			<input type="submit" value="Add Film">
 		</form>
 	</tr>
+
 </body>
 </html>

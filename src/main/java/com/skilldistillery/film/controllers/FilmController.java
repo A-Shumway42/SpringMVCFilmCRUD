@@ -126,6 +126,8 @@ public class FilmController {
 		mv.setViewName("redirect:filmUpdated.do");
 		session.setAttribute("updatedFilm", filmDao.updateFilm(current));
 		
+		
+		
 		return mv;
 
 	}
@@ -133,7 +135,6 @@ public class FilmController {
 	@RequestMapping(path = "filmUpdated.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView filmUpdated() {
 		ModelAndView mv = new ModelAndView();
-
 		mv.setViewName("delete");
 
 		return mv;

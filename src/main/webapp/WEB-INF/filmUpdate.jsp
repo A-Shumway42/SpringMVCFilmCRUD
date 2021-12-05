@@ -45,12 +45,12 @@
 			<input type="submit" value="Update Film" />
 		</form>
 	</form>
-	<br>
-
+	<br> 
+	
 	<!-- Homepage link -->
 	<form action="home.do">
 		<input type="submit" value="Back">
 	</form>
-
+	
 </body>
 </html>
