@@ -21,9 +21,13 @@ public class FilmController {
 	FilmDAO filmDao;
 
 	@RequestMapping({ "/", "home.do" })
-	public ModelAndView home() {
+	public ModelAndView home(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 
+		if(session != null) {
+			session.invalidate();
+		}
+		
 		mv.setViewName("home");
 
 		return mv;
@@ -110,12 +114,12 @@ public class FilmController {
 	}
 
 	@RequestMapping(path = "updateFilm.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView updateFilm(RedirectAttributes redir, HttpSession session) {
+	public ModelAndView updateFilm(Film film, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
 
-		Film current = filmDao.updateFilm(getCurrentFilmFromSession(session));
-
-		boolean isUpdated = current.getFilmId() > 0 ? true : false;
+		filmDao.updateFilm(film);
+		
+		boolean isUpdated = film.getFilmId() > 0 ? true : false;
 		redir.addFlashAttribute("isFilmUpdated", isUpdated);
 
 		boolean updateConfirm = true;
