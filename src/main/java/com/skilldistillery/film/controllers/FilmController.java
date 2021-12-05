@@ -109,6 +109,7 @@ public class FilmController {
 		ModelAndView mv = new ModelAndView();
 		Film current = getCurrentFilmFromSession(session);
 		
+		
 		mv.addObject("film", current);
 		mv.setViewName("filmUpdate");
 		
@@ -120,13 +121,13 @@ public class FilmController {
 		ModelAndView mv = new ModelAndView();
 		Film current = getCurrentFilmFromSession(session);
 		
+		filmDao.updateFilm(current);
+		
 		boolean isUpdated = current.getFilmId() > 0 ? true : false;
 //		redir.addFlashAttribute("isFilmUpdated", isUpdated);
-		
-		boolean updateConfirm = true;
-//		redir.addFlashAttribute("updateConfirm", updateConfirm);
-
+		mv.addObject("film", current);
 		mv.setViewName("filmUpdated.do");
+		
 		return mv;
 
 	}
