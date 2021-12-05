@@ -19,6 +19,10 @@ public class Film {
 	private double replacementCost;
 	private String rating;
 	private String specialFeatures;
+	
+	public Film() {
+		
+	}
 
 	public Film(int filmId, String title, String description, Date releaseYear, int languageId, int rentalPeriod,
 			double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {

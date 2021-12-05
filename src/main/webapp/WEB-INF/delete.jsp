@@ -13,11 +13,17 @@
 			<c:when test="${isFilmDeleted}">
 				<div>
 					<h2>Film Deleted!</h2>
+					<form action="home.do">
+						<input type="submit" value="home">
+					</form>
 				</div>
 			</c:when>
 			<c:when test="${!isFilmDeleted}">
 				<div>
 					<h2>Film can't be deleted!</h2>
+					<form action="home.do">
+						<input type="submit" value="home">
+					</form>
 				</div>
 			</c:when>
 		</c:choose>

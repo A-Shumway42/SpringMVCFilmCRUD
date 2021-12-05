@@ -51,24 +51,34 @@ public class FilmController {
 		return mv;
 	}
 
-	@RequestMapping(path = "deleteFilmDetails.do", method = RequestMethod.POST)
-	public ModelAndView deleteFilmData(Film film, RedirectAttributes redir) {
+//	@RequestMapping(path = "deleteFilm.do", method = RequestMethod.POST)
+//	public ModelAndView deleteFilm(Film film, RedirectAttributes redir) {
+//		boolean isDeleted = filmDao.deleteFilm(film);
+//		ModelAndView mv = new ModelAndView();
+//		redir.addFlashAttribute("isFilmDeleted", isDeleted);
+//		boolean deletedConfirm = true;
+//		redir.addFlashAttribute("deletedConfirm", deletedConfirm);
+//		mv.setViewName("delete");
+//		
+//		return mv;
+//	}
+	@RequestMapping(path = "deleteFilm.do", method = {RequestMethod.POST, RequestMethod.GET})
+	public ModelAndView deleteFilm(Film film, RedirectAttributes redir) {
 		boolean isDeleted = filmDao.deleteFilm(film);
-		boolean deletedConfirm = true;
 		ModelAndView mv = new ModelAndView();
-
 		redir.addFlashAttribute("isFilmDeleted", isDeleted);
+		boolean deletedConfirm = true;
 		redir.addFlashAttribute("deletedConfirm", deletedConfirm);
-		mv.setViewName("result");
-
+		mv.setViewName("redirect:filmDeleted.do");
+		
 		return mv;
 	}
 
-	@RequestMapping(path = "filmDeleted.do", method = RequestMethod.GET)
+	@RequestMapping(path = "filmDeleted.do", method = {RequestMethod.POST, RequestMethod.GET})
 	public ModelAndView filmDeleted() {
 		ModelAndView mv = new ModelAndView();
 
-		mv.setViewName("result");
+		mv.setViewName("delete");
 
 		return mv;
 

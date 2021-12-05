@@ -246,14 +246,19 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		try {
 			conn = DriverManager.getConnection(URL, user, pass);
 			conn.setAutoCommit(false);
-
-			String sql = "DELETE FROM film WHERE id = ?";
-
+			String sql = "DELETE FROM film WHERE film.id = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, film.getFilmId());
-
 			int updateCount = stmt.executeUpdate();
-
+			if (updateCount == 1) {
+				Film test = null;
+				test = findFilmById(film.getFilmId());
+				conn.commit();
+				return true;
+			} else {
+				conn.rollback();
+				return false;
+			}
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 			if (conn != null) {
@@ -267,7 +272,6 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			return false;
 		}
 
-		return true;
 	}
 
 }
