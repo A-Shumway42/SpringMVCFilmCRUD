@@ -240,6 +240,66 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 	}
 
 	@Override
+	public boolean updateFilm(Film film) {
+		Connection conn = null;
+		boolean filmUpdated = false;
+
+		try {
+			conn = DriverManager.getConnection(URL, user, pass);
+			conn.setAutoCommit(false);
+
+			String sql = "UPDATE film SET title=?, description=?, release_year=?, language_id=?, rental_duration=?, "
+					+ "rental_rate=?, length=?, replacement_cost=?, rating=?, special_features=?" + "WHERE film.id = ?";
+
+			PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			stmt.setString(1, film.getTitle());
+			stmt.setString(2, film.getDescription());
+			stmt.setDate(3, film.getReleaseYear());
+			stmt.setInt(4, film.getLanguageId());
+			stmt.setInt(5, film.getRentalPeriod());
+			stmt.setDouble(6, film.getRentalRate());
+			stmt.setInt(7, film.getLength());
+			stmt.setDouble(8, film.getReplacementCost());
+			stmt.setString(9, film.getRating());
+			stmt.setString(10, film.getSpecialFeatures());
+			stmt.setInt(11, film.getFilmId());
+
+			int updateCount = stmt.executeUpdate();
+
+			if (updateCount == 1) {
+				ResultSet keys = stmt.getGeneratedKeys();
+				if (keys.next()) {
+					int updatedFilmId = keys.getInt(1);
+					film.setFilmId(updatedFilmId);
+				}
+
+				keys.close();
+				filmUpdated = true;
+
+			} else {
+				filmUpdated = false;
+
+			}
+
+			conn.commit();
+			stmt.close();
+			conn.close();
+
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+			if (conn != null) {
+				try {
+					conn.rollback();
+				} catch (SQLException sqle2) {
+					System.err.println("Error trying to rollback.");
+				}
+			}
+		}
+
+		return filmUpdated;
+	}
+
+	@Override
 	public boolean deleteFilm(Film film) {
 		Connection conn = null;
 
