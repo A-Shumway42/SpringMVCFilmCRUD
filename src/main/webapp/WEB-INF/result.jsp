@@ -30,6 +30,10 @@
 				<input type="submit" value="Delete Film">
 			</form>
 			<br>
+			<form action="updateFilm.do">
+				<input type="submit" value="Update Film">
+			</form>
+			<br>
 			<form action="home.do">
 				<input type="submit" value="Back">
 			</form>
