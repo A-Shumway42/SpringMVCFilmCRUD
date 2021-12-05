@@ -21,5 +21,10 @@
 			<input type="submit" value="Add Film">
 		</form>
 	</tr>
+	<tr>
+		<form action="filmUpdate">
+			<input type="submit" value="Update Film">
+		</form>
+	</tr>
 </body>
 </html>
