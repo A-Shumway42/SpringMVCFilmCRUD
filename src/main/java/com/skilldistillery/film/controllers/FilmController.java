@@ -1,5 +1,7 @@
 package com.skilldistillery.film.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,11 +29,13 @@ public class FilmController {
 	}
 
 	@RequestMapping(path = "IdSearch.do", params = "filmId", method = RequestMethod.GET)
-	public ModelAndView getByFilmID(String filmId) {
+	public ModelAndView getByFilmID(String filmId, HttpSession session) {
 		int id = Integer.parseInt(filmId);
 
 		ModelAndView mv = new ModelAndView();
 		Film film = filmDao.findFilmById(id);
+		
+		session.setAttribute("film", film);
 
 		mv.addObject("film", film);
 		mv.setViewName("result");
@@ -83,5 +87,15 @@ public class FilmController {
 		return mv;
 
 	}
+
+//	@RequestMapping(path = "filmDeleted.do", method = RequestMethod.GET)
+//	public ModelAndView filmDeleted() {
+//		ModelAndView mv = new ModelAndView();
+//
+//		mv.setViewName("result");
+//
+//		return mv;
+//
+//	}
 
 }
