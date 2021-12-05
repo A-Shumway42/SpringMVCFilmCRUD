@@ -6,12 +6,12 @@
 </head>
 <body>
 	<h3>Search Database</h3>
-	<form action="IdSearch.do" method=GET>
-		Search Film ID #: <input type="number" name="filmId" /> <input
+	<form id="1" action="IdSearch.do" method=GET>
+		Search Film ID #: <input type="number" name="filmId" /> <input id="1"
 			type="submit" value="Search ID" />
 	</form>
-	<form action="KeySearch.do" method=GET>
-		Keyword Search: <input type="text" name="keyWord" /> <input
+	<form id="2" action="KeySearch.do" method=GET>
+		Keyword Search: <input id="2" type="text" name="keyWord" /> <input
 			type="submit" value="Search Keyword" />
 	</form>
 	
@@ -26,8 +26,6 @@
 			<input type="submit" value="Add Film">
 		</form>
 	</tr>
-	
-	<a href="filmUpdateButton.do">Film Update</a>
-	
+
 </body>
 </html>
