@@ -32,6 +32,7 @@
 			<br>
 			<form action="updateFilmForm.do">
 				<input type="submit" value="Update Film">
+				<input style="display:none" name="filmId" value="${film.filmId}">
 			</form>
 			<br>
 			<form action="home.do">
@@ -57,6 +58,7 @@
 					</c:forEach>
 					<form action="updateFilmForm.do">
 						<input type="submit" value="Update Film">
+						<input style="display:none" name="filmId" value="${f.filmId}">
 					</form>
 				</c:forEach>
 			</ul>

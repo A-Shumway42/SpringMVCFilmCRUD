@@ -99,10 +99,10 @@ public class FilmController {
 		return mv;
 	}
 
-	@RequestMapping(path = "updateFilmForm.do", method = RequestMethod.GET)
-	public ModelAndView updateFilmForm(HttpSession session) {
+	@RequestMapping(path = "updateFilmForm.do", params="filmId", method = RequestMethod.GET)
+	public ModelAndView updateFilmForm(HttpSession session, Integer filmId) {
 		ModelAndView mv = new ModelAndView();
-		Film current = getCurrentFilmFromSession(session);
+		Film current = filmDao.findFilmById(filmId);
 
 		mv.addObject("film", current);
 		mv.setViewName("filmUpdate");
