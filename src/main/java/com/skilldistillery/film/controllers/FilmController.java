@@ -6,7 +6,6 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.reactive.WebFluxProperties.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -58,6 +57,7 @@ public class FilmController {
 		for (Film film : films) {
 			film.setActors(filmDao.findActorsByFilmId(film.getFilmId()));
 		}
+
 		mv.addObject("films", films);
 		mv.setViewName("result");
 

@@ -1,11 +1,13 @@
 # SpringMVCFilmCRUD
 
 ## Overview
+This project was to re-create a command-line application that retrieves and displays film data as full stack project, using the Spring Boot framework. Highlighting the model, view, controller design pattern (M.V.C.), and touching on the full arsenal of database manipulation language (D.L.M.) through the use of C.R.U.D. (Create, Read, Update, Delete). Through the use of simple front end .html forms and .jsp our programs allows the user to query data from our ec2 hosted, tomcat served database. The application was split into for three backend packages and utilized a single backend controller. The frontend utilized a single .html for for the addition of new films and another four .jsp file serving content for our landing page, query results, database adds, and database updates and deletes. At the time of this project comfort levels with the D.A.O. design pattern and backend controller was feeling very good. Generating data to display for queries, relaying data from class to class through the controller and onto the screen for display was feeling very fluid and logical. That does not mean it was not without it's challenges though! Luckily, this was also the first project in which we have worked entirely as a team.
 
 ## Lessons Learned
+Although it states above that the movement of data came easy there were still some trying times and "Ah Ha!" moments. Performing database deletes utilizing HttpSession functionality was a nice hill to crest and find our selves coming down the otherside for one. Utilizing command objects in the editing process of database entries also a very nice "real world" encounter. But most important lesson of all would have to be work flow and functionality around Git and GitHub. Our team was lucky to have three people while others only had two, I say lucky becuase we were forced into tight quarters and had to learn how to work around within in them with each other. Between pair programming and high frequency communication we believe it is our advantage to have had this experience earlier on. There is no doubt that the teamwork involved both made the trying times more manageable as well as making a heavy lift lighter with many hands. Teamwork Makes the Dreamwork!!!
 
 ## Technologies Used
-Spring Boot, Spring Tool Suite, Atom, MySQL, MAMP, Git, GitHub, Markdown, Unix Shell
+Java, .Html, .Jsp, Spring Boot, Spring Tool Suite, Atom, MySQL, MAMP, Git, GitHub, Markdown, Unix Shell
 
 ## Project Owners
 Andrew Shumway, David Lizon, Graham Anderson

@@ -42,8 +42,7 @@
 			<ul>
 				<c:forEach var="f" items="${films}">
 					<br>
-					<h3>Film Details:</h3>
-					<li>${f.title}</li>
+					<a href="IdSearch.do">${f.title}</a>
 					<li>ID - ${f.filmId}</li>
 					<li>${f.description}</li>
 					<li>${f.languageId}</li>
