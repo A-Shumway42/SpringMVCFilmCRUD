@@ -31,8 +31,8 @@
 			</form>
 			<br>
 			<form action="updateFilmForm.do">
-				<input type="submit" value="Update Film">
-				<input style="display:none" name="filmId" value="${film.filmId}">
+				<input type="submit" value="Update Film"> <input
+					style="display: none" name="filmId" value="${film.filmId}">
 			</form>
 			<br>
 			<form action="home.do">
@@ -57,8 +57,13 @@
 						<br>
 					</c:forEach>
 					<form action="updateFilmForm.do">
-						<input type="submit" value="Update Film">
-						<input style="display:none" name="filmId" value="${f.filmId}">
+						<input type="submit" value="Update Film"> <input
+							style="display: none" name="filmId" value="${f.filmId}">
+					</form>
+					<br>
+					<form action="deleteFilm.do">
+						<input type="submit" value="Delete Film"> <input
+							style="display: none" name="filmId" value="${f.filmId}">
 					</form>
 				</c:forEach>
 			</ul>

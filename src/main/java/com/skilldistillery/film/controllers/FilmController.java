@@ -76,11 +76,10 @@ public class FilmController {
 		return mv;
 	}
 
-	@RequestMapping(path = "deleteFilm.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView deleteFilm(RedirectAttributes redir, HttpSession session) {
+	@RequestMapping(path = "deleteFilm.do", params="filmId", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView deleteFilm(RedirectAttributes redir, HttpSession session, Integer filmId) {
 		ModelAndView mv = new ModelAndView();
-		Film current = getCurrentFilmFromSession(session);
-
+		Film current = filmDao.findFilmById(filmId);
 		boolean isDeleted = filmDao.deleteFilm(current);
 		redir.addFlashAttribute("isFilmDeleted", isDeleted);
 
