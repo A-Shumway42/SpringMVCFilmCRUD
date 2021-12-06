@@ -27,7 +27,8 @@
 				</c:forEach>
 			</ul>
 			<form action="deleteFilm.do">
-				<input type="submit" value="Delete Film">
+				<input type="submit" value="Delete Film"> <input
+					style="display: none" name="filmId" value="${film.filmId}">
 			</form>
 			<br>
 			<form action="updateFilmForm.do">
