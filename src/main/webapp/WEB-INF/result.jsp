@@ -42,8 +42,7 @@
 			<ul>
 				<c:forEach var="f" items="${films}">
 					<br>
-					<h3>Film Details:</h3>
-					<li>${f.title}</li>
+					<a href="IdSearch.do">${f.title}</a>
 					<li>ID - ${f.filmId}</li>
 					<li>${f.description}</li>
 					<li>${f.languageId}</li>
@@ -52,13 +51,7 @@
 					<li>${f.replacementCost}</li>
 					<li>${f.rating}</li>
 					<h3>Cast</h3>
-					<c:forEach var="x" items="${actors}">
-						<li>${x.toString()}</li>
-						<br>
-					</c:forEach>
-					<form action="updateFilmForm.do">
-						<input type="submit" value="Update Film">
-					</form>
+					<li>${f.getActors()}</li>
 				</c:forEach>
 			</ul>
 			<br>
