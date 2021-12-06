@@ -52,13 +52,8 @@ public class FilmController {
 	@RequestMapping(path = "KeySearch.do", method = RequestMethod.GET)
 	public ModelAndView getFilmKeyWord(String keyWord, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-<<<<<<< HEAD
 		List<Film> films = filmDao.keywordSearch(keyWord);
 		
-=======
-		List<Film> films = new ArrayList<>();
-		films = filmDao.keywordSearch(keyWord);
->>>>>>> 1fcee61cabcbb56352fc517b728527507bbf5214
 		for (Film film : films) {
 			film.setActors(filmDao.findActorsByFilmId(film.getFilmId()));
 		}
