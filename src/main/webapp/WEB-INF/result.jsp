@@ -16,7 +16,7 @@
 				<li>${film.title}</li>
 				<li>ID - ${film.filmId}</li>
 				<li>${film.description}</li>
-				<li>${film.languageId}</li>
+				<li>${film.language}</li>
 				<li>${film.rentalPeriod}</li>
 				<li>${film.rentalRate}</li>
 				<li>${film.replacementCost}</li>
@@ -46,7 +46,7 @@
 					<h4>${f.title}</h4>
 					<li>ID - ${f.filmId}</li>
 					<li>${f.description}</li>
-					<li>${f.languageId}</li>
+					<li>${f.language}</li>
 					<li>${f.rentalPeriod}</li>
 					<li>${f.rentalRate}</li>
 					<li>${f.replacementCost}</li>
