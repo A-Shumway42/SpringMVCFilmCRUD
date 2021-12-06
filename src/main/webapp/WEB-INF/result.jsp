@@ -52,7 +52,7 @@
 					<li>${f.replacementCost}</li>
 					<li>${f.rating}</li>
 					<h3>Cast</h3>
-					<c:forEach var="x" items="${actors}">
+					<c:forEach var="x" items="${f.actors}">
 						<li>${x.toString()}</li>
 						<br>
 					</c:forEach>

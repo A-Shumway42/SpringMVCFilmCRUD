@@ -1,5 +1,6 @@
 package com.skilldistillery.film.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -28,10 +29,6 @@ public class FilmController {
 		if(session != null) {
 			session.invalidate();
 		}
-
-		if(session != null) {
-			session.invalidate();
-		}
 		
 		mv.setViewName("home");
 
@@ -56,15 +53,11 @@ public class FilmController {
 	@RequestMapping(path = "KeySearch.do", method = RequestMethod.GET)
 	public ModelAndView getFilmKeyWord(String keyWord, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		List<Film> films = filmDao.keywordSearch(keyWord);
-
-//		session.setAttribute("films", films);
-
+		List<Film> films = new ArrayList<>();
+		films = filmDao.keywordSearch(keyWord);
 		for (Film film : films) {
-			mv.addObject("actors", film.getActors());
-
+			film.setActors(filmDao.findActorsByFilmId(film.getFilmId()));
 		}
-
 		mv.addObject("films", films);
 		mv.setViewName("result");
 
