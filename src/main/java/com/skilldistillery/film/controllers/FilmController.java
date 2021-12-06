@@ -52,6 +52,10 @@ public class FilmController {
 	public ModelAndView getFilmKeyWord(String keyWord, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		List<Film> films = filmDao.keywordSearch(keyWord);
+		
+		for (Film film : films) {
+			film.setActors(filmDao.findActorsByFilmId(film.getFilmId()));
+		}
 
 		mv.addObject("films", films);
 		mv.setViewName("result");
