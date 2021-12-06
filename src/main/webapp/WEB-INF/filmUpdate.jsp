@@ -13,7 +13,7 @@
 	<form action="updateFilm.do" method=GET>
 		<h2>Film ID# - ${film.filmId}</h2>
 		
-		<label for="filmId">Film ID:</label> <input type="text" name="filmId" value="${film.filmId}" readonly /> <br>
+		<label for="filmId">Film ID:</label> <input type="text" name="filmId" value="${film.filmId}" required /> <br>
 			
 		<label for="title">Title:</label> <input type="text" name="title" value="${film.title}" required /> <br>
 		
