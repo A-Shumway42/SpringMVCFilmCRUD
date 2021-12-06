@@ -55,6 +55,9 @@
 						<li>${x.toString()}</li>
 						<br>
 					</c:forEach>
+					<form action="updateFilmForm.do">
+						<input type="submit" value="Update Film">
+					</form>
 				</c:forEach>
 			</ul>
 			<br>
