@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.reactive.WebFluxProperties.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -57,8 +56,6 @@ public class FilmController {
 	public ModelAndView getFilmKeyWord(String keyWord, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		List<Film> films = filmDao.keywordSearch(keyWord);
-
-//		session.setAttribute("films", films);
 
 		for (Film film : films) {
 			mv.addObject("actors", film.getActors());
