@@ -27,10 +27,6 @@ public class FilmController {
 		if(session != null) {
 			session.invalidate();
 		}
-
-		if(session != null) {
-			session.invalidate();
-		}
 		
 		mv.setViewName("home");
 
